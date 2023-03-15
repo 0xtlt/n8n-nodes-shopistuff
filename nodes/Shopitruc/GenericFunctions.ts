@@ -21,13 +21,25 @@ export async function shopifyApiRequest(
 	uri?: string,
 	option: IDataObject = {},
 ): Promise<any> {
-	let credentials = await this.getCredentials('shopifyAccessTokenApi');
-	let credentialType = 'shopifyAccessTokenApi';
+	const authenticationMethod = this.getNodeParameter('authentication', 0, 'oAuth2') as string;
+
+	let credentials;
+	let credentialType = 'shopitrucOAuth2Api';
+
+	if (authenticationMethod === 'apiKey') {
+		credentials = await this.getCredentials('shopitrucApi');
+		credentialType = 'shopitrucApi';
+	} else if (authenticationMethod === 'accessToken') {
+		credentials = await this.getCredentials('shopitrucAccessTokenApi');
+		credentialType = 'shopitrucAccessTokenApi';
+	} else {
+		credentials = await this.getCredentials('shopitrucOAuth2Api');
+	}
 
 	const options: OptionsWithUri = {
 		method,
 		qs: query,
-		uri: uri || `https://${credentials.shopSubdomain}.myshopify.com/admin/api/2019-10${resource}`,
+		uri: uri || `https://${credentials.shopSubdomain}.myshopify.com/admin/api/2023-01${resource}`,
 		body,
 		json: true,
 	};
@@ -36,6 +48,12 @@ export async function shopifyApiRequest(
 		tokenType: 'Bearer',
 		keyToIncludeInAccessTokenHeader: 'X-Shopify-Access-Token',
 	};
+
+	if (authenticationMethod === 'apiKey') {
+		Object.assign(options, {
+			auth: { username: credentials.apiKey, password: credentials.password },
+		});
+	}
 
 	if (Object.keys(option).length !== 0) {
 		Object.assign(options, option);

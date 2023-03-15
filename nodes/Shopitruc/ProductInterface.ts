@@ -48,7 +48,7 @@ export interface IVariant {
 	weight_unit?: string;
 }
 
-export interface ICustomer {
+export interface IProduct {
 	body_html?: string;
 	handle?: string;
 	images?: IImage[];

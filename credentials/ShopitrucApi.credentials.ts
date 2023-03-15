@@ -1,17 +1,14 @@
-import type {
+import {
 	IAuthenticateGeneric,
 	ICredentialTestRequest,
 	ICredentialType,
 	INodeProperties,
 } from 'n8n-workflow';
 
-export class ShopifyAccessTokenApi implements ICredentialType {
-	name = 'shopifyAccessTokenApi';
-
-	displayName = 'Shopify Access Token API';
-
-	documentationUrl = 'shopify';
-
+export class ShopitrucApi implements ICredentialType {
+	name = 'shopitrucApi';
+	displayName = 'Shopitruc API';
+	documentationUrl = 'https://shopify.dev';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Shop Subdomain',
@@ -39,6 +36,10 @@ export class ShopifyAccessTokenApi implements ICredentialType {
 		},
 	];
 
+	// This allows the credential to be used by other parts of n8n
+	// stating how this credential is injected as part of the request
+	// An example is the Http Request node that can make generic calls
+	// reusing this credential
 	authenticate: IAuthenticateGeneric = {
 		type: 'generic',
 		properties: {
@@ -50,8 +51,8 @@ export class ShopifyAccessTokenApi implements ICredentialType {
 
 	test: ICredentialTestRequest = {
 		request: {
-			baseURL: '=https://{{$credentials?.shopSubdomain}}.myshopify.com/admin/api/2019-10',
-			url: '/products.json',
+			baseURL: '=https://{{$credentials?.shopSubdomain}}.myshopify.com/admin/api/2023-01',
+			url: '/shop.json',
 		},
 	};
 }
