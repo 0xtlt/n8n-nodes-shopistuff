@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-shopistuff",
-	"version": "0.1.2",
+	"version": "0.1.0",
 	"description": "n8n community nodes for Shopify",
 	"keywords": [
 		"shopify",
