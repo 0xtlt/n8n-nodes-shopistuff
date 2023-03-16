@@ -126,3 +126,12 @@ export function keysToSnakeCase(elements: IDataObject[] | IDataObject): IDataObj
 	}
 	return elements;
 }
+
+export function GetValueOfObj(obj: IDataObject | undefined, key: string) {
+	const objCopy: any = obj;
+	if (!objCopy[key] || (!objCopy[key][key] && !objCopy[key].length)) {
+		return undefined;
+	}
+
+	return objCopy[key][key] || objCopy[key][0][key];
+}

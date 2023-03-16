@@ -19,12 +19,13 @@ import { customerFields, customerOperations } from './CustomerDescription';
 import type { IAddress, IDiscountCode, ILineItem, IOrder } from './OrderInterface';
 
 import type { IProduct } from './ProductInterface';
+import findMany, { getCustomer, updateCustomer } from './CustomerFunctions';
 
-export class Shopitruc implements INodeType {
+export class Shopistuff implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Shopitruc',
 		name: 'shopitruc',
-		icon: 'file:shopify.svg',
+		icon: 'file:logo.png',
 		group: ['output'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
@@ -176,7 +177,6 @@ export class Shopitruc implements INodeType {
 		const operation = this.getNodeParameter('operation', 0);
 		for (let i = 0; i < length; i++) {
 			try {
-				console.log(resource, operation);
 				if (resource === 'order') {
 					//https://shopify.dev/docs/admin-api/rest/reference/orders/order#create-2020-04
 					if (operation === 'create') {
@@ -460,15 +460,19 @@ export class Shopitruc implements INodeType {
 						responseData = responseData.product;
 					}
 				} else if (resource === 'customer') {
-					const customerId = this.getNodeParameter('customerId', i, '') as string;
+					// FUNCTION WHERE WE PASS THIS, OPERATION, RESOURCE
+					if (operation === 'get') {
+						const customerId = this.getNodeParameter('customerId', i, '') as string;
+						responseData = await getCustomer.call(this, customerId);
+					}
 
-					responseData = await shopifyApiRequest.call(
-						this,
-						'GET',
-						`/customers/${customerId}.json`,
-						{},
-						qs,
-					);
+					if (operation === 'find_many') {
+						responseData = await findMany.call(this, 0);
+					}
+
+					if (operation === 'update') {
+						responseData = await updateCustomer.call(this, 0);
+					}
 				}
 
 				const executionData = this.helpers.constructExecutionMetaData(

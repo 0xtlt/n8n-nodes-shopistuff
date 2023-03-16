@@ -1,15 +1,18 @@
 {
-	"name": "n8n-nodes-shopitruc",
+	"name": "n8n-nodes-shopistuff",
 	"version": "0.1.2",
-	"description": "n8n nodes for Shopitruc",
+	"description": "n8n community nodes for Shopify",
 	"keywords": [
+		"shopify",
+		"shopify n8n",
+		"shopistuff",
 		"n8n-community-node-package"
 	],
 	"license": "MIT",
 	"homepage": "",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/0xtlt/n8n-nodes-shopitruc.git"
+		"url": "https://github.com/0xtlt/n8n-nodes-shopistuff.git"
 	},
 	"author": {
 		"name": "0xtlt",
@@ -30,10 +33,10 @@
 	"n8n": {
 		"n8nNodesApiVersion": 1,
 		"credentials": [
-			"dist/credentials/ShopitrucApi.credentials.js"
+			"dist/credentials/ShopistuffApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/Shopitruc/Shopitruc.node.js"
+			"dist/nodes/Shopistuff/Shopistuff.node.js"
 		]
 	},
 	"devDependencies": {

@@ -5,7 +5,7 @@ import {
 	INodeProperties,
 } from 'n8n-workflow';
 
-export class ShopitrucApi implements ICredentialType {
+export class ShopistuffApi implements ICredentialType {
 	name = 'shopitrucApi';
 	displayName = 'Shopitruc API';
 	documentationUrl = 'https://shopify.dev';

@@ -1,8 +1,8 @@
 {
-	"node": "n8n-nodes-base.shopitruc",
+	"node": "n8n-nodes-base.shopistuff",
 	"nodeVersion": "1.2",
 	"codexVersion": "1.0",
-	"categories": ["Development", "Marketing & Content"],
+	"categories": ["Development", "E-Commerce"],
 	"resources": {
 		"credentialDocumentation": [
 			{

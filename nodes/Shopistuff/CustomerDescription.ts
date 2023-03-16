@@ -1,5 +1,6 @@
 import type { INodeProperties } from 'n8n-workflow';
 import { CustomerQuery } from './CustomerQuery';
+import { CustomerUpdate } from './CustomerUpdate';
 
 export const customerOperations: INodeProperties[] = [
 	{
@@ -24,6 +25,12 @@ export const customerOperations: INodeProperties[] = [
 				value: 'find_many',
 				description: 'Find many customers',
 				action: 'Find many customers',
+			},
+			{
+				name: 'Update',
+				value: 'update',
+				description: 'Update a customer',
+				action: 'Update a customer',
 			},
 		],
 		default: 'get',
@@ -90,4 +97,22 @@ export const customerFields: INodeProperties[] = [
 		},
 	},
 	CustomerQuery,
+	/* -------------------------------------------------------------------------- */
+	/*                                customer:update                              */
+	/* -------------------------------------------------------------------------- */
+	{
+		displayName: 'Customer ID',
+		name: 'customerId',
+		type: 'string',
+		default: '',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: ['customer'],
+				operation: ['update'],
+			},
+		},
+		description: 'The ID of the customer to update',
+	},
+	CustomerUpdate,
 ];

@@ -4,6 +4,12 @@ export const CustomerQuery: INodeProperties = {
 	displayName: 'Query',
 	name: 'query',
 	type: 'fixedCollection',
+	displayOptions: {
+		show: {
+			resource: ['customer'],
+			operation: ['find_many'],
+		},
+	},
 	typeOptions: {
 		multipleValues: false,
 	},

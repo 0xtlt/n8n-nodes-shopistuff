@@ -1,14 +1,14 @@
-# n8n-nodes-klaviyo --> sorry I cloned the klaviyo node, will change this later
+# n8n-nodes-shopistuff
 
-This is an n8n community node. It lets you use _klaviyo_ in your n8n workflows.
+This is an n8n community node. It lets you use _Shopify_ in your n8n workflows.
 
-_Klaviyo_ is a marketing/email automation platform for ecommerce businesses.
+_Shopify_ is an e-commerce platform that allows you to start, grow, and manage your business.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
 
 [Installation](#installation)  
 [Operations](#operations)  
-[Credentials](#credentials) <!-- delete if no auth needed -->  
+[Credentials](#credentials)  
 [Resources](#resources)
 
 ## Installation
@@ -17,19 +17,15 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ## Operations
 
-- Render template
-- Get template
-- Get all templates
-- Get flow
-- Get all flows
-- Create event
+- Find customers
+- Update customer
 - More to come...
 
 ## Credentials
 
-Get the Klaviyo API key at the following link: [[API](https://developers.klaviyo.com/en/docs/retrieve_api_credentials)](https://developers.klaviyo.com/en/docs/retrieve_api_credentials).
+You will need your Shopify API key and password. You can find instructions on how to create a private app and obtain the API key and password in the following link: [Shopify API Authentication](https://shopify.dev/tutorials/authenticate-a-private-app-with-shopify-admin#authentication).
 
 ## Resources
 
 - [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
-- [Klaviyo API documentation](https://developers.klaviyo.com/reference)
+- [Shopify API documentation](https://shopify.dev/api/admin)
