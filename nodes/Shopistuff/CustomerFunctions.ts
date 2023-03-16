@@ -8,7 +8,7 @@ export default async function findMany(
 ): Promise<INodeExecutionData[]> {
 	const limit = this.getNodeParameter('limit', index) as number;
 	const order = this.getNodeParameter('order', index) as string;
-	const queryParameters = this.getNodeParameter('queryParameters', index, []) as Array<{
+	const queryParameters = this.getNodeParameter('query', index, []) as Array<{
 		name: string;
 		value: string;
 	}>;
@@ -18,8 +18,8 @@ export default async function findMany(
 		order,
 	};
 
-	queryParameters.forEach((param) => {
-		qs[param.name] = param.value;
+	Object.entries(queryParameters).forEach(([key, { value }]) => {
+		qs[key] = value;
 	});
 
 	const responseData = await shopifyApiRequest.call(this, 'GET', '/customers/search.json', {}, qs);
