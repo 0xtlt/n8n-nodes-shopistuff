@@ -40,52 +40,9 @@ export class Shopistuff implements INodeType {
 			{
 				name: 'shopistuffApi',
 				required: true,
-				displayOptions: {
-					show: {
-						authentication: ['apiKey'],
-					},
-				},
-			},
-			{
-				name: 'shopifyAccessTokenApi',
-				required: true,
-				displayOptions: {
-					show: {
-						authentication: ['accessToken'],
-					},
-				},
-			},
-			{
-				name: 'shopifyOAuth2Api',
-				required: true,
-				displayOptions: {
-					show: {
-						authentication: ['oAuth2'],
-					},
-				},
 			},
 		],
 		properties: [
-			{
-				displayName: 'Authentication',
-				name: 'authentication',
-				type: 'options',
-				options: [
-					{
-						name: 'Access Token',
-						value: 'accessToken',
-					},
-					{
-						name: 'OAuth2',
-						value: 'oAuth2',
-					},
-					{
-						name: 'API Key',
-						value: 'apiKey',
-					},
-				],
-				default: 'apiKey',
-			},
 			{
 				displayName: 'Resource',
 				name: 'resource',

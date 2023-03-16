@@ -21,17 +21,17 @@ export async function shopifyApiRequest(
 	uri?: string,
 	option: IDataObject = {},
 ): Promise<any> {
-	const authenticationMethod = this.getNodeParameter('authentication', 0, 'oAuth2') as string;
+	const authenticationMethod = this.getNodeParameter('authentication', 0, 'accessToken') as string;
 
 	let credentials;
-	let credentialType = 'shopistuffOAuth2Api';
+	let credentialType = 'shopistuffAccessTokenApi';
 
 	if (authenticationMethod === 'apiKey') {
 		credentials = await this.getCredentials('shopistuffApi');
 		credentialType = 'shopistuffApi';
 	} else if (authenticationMethod === 'accessToken') {
-		credentials = await this.getCredentials('shopistuffAccessTokenApi');
-		credentialType = 'shopistuffAccessTokenApi';
+		credentials = await this.getCredentials('shopistuffApi');
+		credentialType = 'shopistuffApi';
 	} else {
 		credentials = await this.getCredentials('shopistuffOAuth2Api');
 	}
