@@ -23,21 +23,21 @@ import findMany, { getCustomer, updateCustomer } from './CustomerFunctions';
 
 export class Shopistuff implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Shopitruc',
-		name: 'shopitruc',
+		displayName: 'Shopistuff',
+		name: 'shopistuff',
 		icon: 'file:logo.png',
 		group: ['output'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description: 'Consume Shopify API',
 		defaults: {
-			name: 'Shopitruc',
+			name: 'Shopistuff',
 		},
 		inputs: ['main'],
 		outputs: ['main'],
 		credentials: [
 			{
-				name: 'shopitrucApi',
+				name: 'shopistuffApi',
 				required: true,
 				displayOptions: {
 					show: {

@@ -24,16 +24,16 @@ export async function shopifyApiRequest(
 	const authenticationMethod = this.getNodeParameter('authentication', 0, 'oAuth2') as string;
 
 	let credentials;
-	let credentialType = 'shopitrucOAuth2Api';
+	let credentialType = 'shopistuffOAuth2Api';
 
 	if (authenticationMethod === 'apiKey') {
-		credentials = await this.getCredentials('shopitrucApi');
-		credentialType = 'shopitrucApi';
+		credentials = await this.getCredentials('shopistuffApi');
+		credentialType = 'shopistuffApi';
 	} else if (authenticationMethod === 'accessToken') {
-		credentials = await this.getCredentials('shopitrucAccessTokenApi');
-		credentialType = 'shopitrucAccessTokenApi';
+		credentials = await this.getCredentials('shopistuffAccessTokenApi');
+		credentialType = 'shopistuffAccessTokenApi';
 	} else {
-		credentials = await this.getCredentials('shopitrucOAuth2Api');
+		credentials = await this.getCredentials('shopistuffOAuth2Api');
 	}
 
 	const options: OptionsWithUri = {
