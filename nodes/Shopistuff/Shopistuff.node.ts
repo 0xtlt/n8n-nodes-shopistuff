@@ -19,7 +19,7 @@ import { customerFields, customerOperations } from './CustomerDescription';
 import type { IAddress, IDiscountCode, ILineItem, IOrder } from './OrderInterface';
 
 import type { IProduct } from './ProductInterface';
-import findMany, { getCustomer, updateCustomer } from './CustomerFunctions';
+import findMany, { createCustomer, getCustomer, updateCustomer } from './CustomerFunctions';
 
 export class Shopistuff implements INodeType {
 	description: INodeTypeDescription = {
@@ -430,6 +430,10 @@ export class Shopistuff implements INodeType {
 
 					if (operation === 'update') {
 						responseData = await updateCustomer.call(this, 0);
+					}
+
+					if (operation === 'create') {
+						responseData = await createCustomer.call(this, 0);
 					}
 				}
 

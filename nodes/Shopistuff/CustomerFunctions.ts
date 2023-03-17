@@ -75,3 +75,58 @@ export async function getCustomer(this: IExecuteFunctions, id: string) {
 	const responseData = await shopifyApiRequest.call(this, 'GET', endpoint);
 	return responseData.customer;
 }
+
+// CustomerFunctions.ts
+export async function createCustomer(
+	this: IExecuteFunctions,
+	index: number,
+): Promise<INodeExecutionData[]> {
+	const customerData = this.getNodeParameter('createCustomer', index, {}) as {
+		first_name: { value: string };
+		tags: { value: string };
+		last_name: { value: string };
+		phone: { value: string };
+		verified_email: { value: boolean };
+		password: { value: string };
+		password_confirmation: { value: string };
+		send_email_welcome: { value: boolean };
+		addresses: {
+			address: Array<{
+				address1: string;
+				city: string;
+				province: string;
+				phone: string;
+				zip: string;
+				last_name: string;
+				first_name: string;
+				country: string;
+			}>;
+		};
+	};
+
+	const body = {
+		customer: {
+			email: this.getNodeParameter('email', index) as string,
+			tags: customerData.tags?.value,
+			first_name: customerData.first_name?.value,
+			last_name: customerData.last_name?.value,
+			phone: customerData.phone?.value,
+			verified_email: customerData.verified_email?.value,
+			password: customerData.password?.value,
+			password_confirmation: customerData.password_confirmation?.value,
+			send_email_welcome: customerData.send_email_welcome?.value,
+			addresses: [customerData.addresses?.address],
+		},
+	};
+
+	// Remove undefined values
+	Object.entries(body.customer).forEach(([key, value]) => {
+		if (value === undefined) {
+			delete (body as any).customer[key];
+		}
+	});
+
+	const responseData = await shopifyApiRequest.call(this, 'POST', '/customers.json', body);
+
+	return responseData.customer;
+}

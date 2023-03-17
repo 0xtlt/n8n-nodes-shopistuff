@@ -1,4 +1,5 @@
 import type { INodeProperties } from 'n8n-workflow';
+import { CustomerCreate } from './CustomerCreate';
 import { CustomerQuery } from './CustomerQuery';
 import { CustomerUpdate } from './CustomerUpdate';
 
@@ -31,6 +32,12 @@ export const customerOperations: INodeProperties[] = [
 				value: 'update',
 				description: 'Update a customer',
 				action: 'Update a customer',
+			},
+			{
+				name: 'Create',
+				value: 'create',
+				description: 'Create a customer',
+				action: 'Create a customer',
 			},
 		],
 		default: 'get',
@@ -115,4 +122,22 @@ export const customerFields: INodeProperties[] = [
 		description: 'The ID of the customer to update',
 	},
 	CustomerUpdate,
+	/* -------------------------------------------------------------------------- */
+	/*                                customer:create                              */
+	/* -------------------------------------------------------------------------- */
+	{
+		displayName: 'Email',
+		name: 'email',
+		type: 'string',
+		placeholder: 'name@email.com',
+		required: true,
+		default: '',
+		displayOptions: {
+			show: {
+				resource: ['customer'],
+				operation: ['create'],
+			},
+		},
+	},
+	CustomerCreate,
 ];
